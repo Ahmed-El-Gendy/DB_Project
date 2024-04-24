@@ -1,4 +1,6 @@
 import pymysql
+from update_room import update_room
+from delete_order import delete_orders
 
 def insert_bill(guest_id, receptionist_id):
     connection = pymysql.connect(
@@ -25,6 +27,11 @@ def insert_bill(guest_id, receptionist_id):
         data = (total, guest_id, receptionist_id)
         cursor.execute(sql, data)
         connection.commit()
+        sql = "SELECT id FROM room WHERE guest_id = %s"
+        cursor.execute(sql, (guest_id,))
+        results = cursor.fetchall()
+        update_room(int(results[0][0]), 'Not occupied', None, None, None)
+        delete_orders(guest_id)
     except pymysql.Error as e:
         print(f"erorr {e}")
     finally:
