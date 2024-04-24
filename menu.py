@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_room(id, state, clas, price_per_night):
+def insert_menu(id, price, name):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -9,8 +9,8 @@ def insert_room(id, state, clas, price_per_night):
     )
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest (id, state, clas, price_per_night) VALUES (%s, %s, %s, %s)"
-        data = (id, state, clas, price_per_night)
+        sql = "INSERT INTO guest (id, price, name) VALUES (%s, %s, %s)"
+        data = (id, price, name)
         cursor.execute(sql, data)
         connection.commit()
     finally:
