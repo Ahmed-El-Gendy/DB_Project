@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_guest_num(guest_id, phone_number):
+def update_feedback(id, opinion, rate, guest_id):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -10,13 +10,12 @@ def insert_guest_num(guest_id, phone_number):
 
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest_num (guest_id, phone_number) VALUES (%s, %s)"
-        data = (guest_id, phone_number)
+        sql = "UPDATE feedback SET opinion = %s, rate = %s WHERE id = %s"
+        data = (opinion, rate, id)
         cursor.execute(sql, data)
         connection.commit()
     finally:
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    insert_guest_num(1,"0120681549")
-
+    update_feedback(1,'well done', 10, 1)

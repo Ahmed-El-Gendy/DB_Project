@@ -16,6 +16,11 @@ def insert_bill(guest_id, receptionist_id):
         cursor.execute(sql, (guest_id,))
         results = cursor.fetchall()
         total += int(results[0][0])
+        sql = "SELECT menu.price, guest_orders.number_of_order FROM guest_orders join menu on guest_orders.guest_id = %s and guest_orders.meal_id = menu.id"
+        cursor.execute(sql, (guest_id,))
+        results = cursor.fetchall()
+        for rwo in results:
+            total += int(rwo[0]) * int(rwo[1])
         sql = "INSERT INTO bill (total_price, guest_id, date_of_check_out, receptionist_id) VALUES (%s, %s, NOW(), %s)"
         data = (total, guest_id, receptionist_id)
         cursor.execute(sql, data)

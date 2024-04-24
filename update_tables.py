@@ -1,7 +1,7 @@
 from datetime import datetime
 import pymysql
 
-def insert_tables(table_num, state, guest_id, start, receptionist_id):
+def update_tables(table_num, state, guest_id, start, receptionist_id):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -21,4 +21,4 @@ def insert_tables(table_num, state, guest_id, start, receptionist_id):
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    insert_tables(2, "Available", None, None, None)
+    update_tables(2, "Not available", 1, "2024-7-21 00:00:00", 2)

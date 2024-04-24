@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_guest_num(guest_id, phone_number):
+def update_guest_order(guest_id, meal_id, number_of_order):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -10,13 +10,13 @@ def insert_guest_num(guest_id, phone_number):
 
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest_num (guest_id, phone_number) VALUES (%s, %s)"
-        data = (guest_id, phone_number)
+        sql = "UPDATE guest_orders SET number_of_order = %s WHERE guest_id = %s and meal_id = %s"
+        data = (number_of_order, guest_id, meal_id)
         cursor.execute(sql, data)
         connection.commit()
     finally:
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    insert_guest_num(1,"0120681549")
+    update_guest_order(1, 1, 5)
 

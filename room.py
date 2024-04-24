@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_room(id, state, clas, price_per_night):
+def insert_room(state, clas, price_per_night):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -9,10 +9,12 @@ def insert_room(id, state, clas, price_per_night):
     )
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest (id, state, clas, price_per_night) VALUES (%s, %s, %s, %s)"
-        data = (id, state, clas, price_per_night)
+        sql = "INSERT INTO room (state, class, price_per_night) VALUES (%s, %s, %s)"
+        data = (state, clas, price_per_night)
         cursor.execute(sql, data)
         connection.commit()
     finally:
         cursor.close()
         connection.close()
+if __name__ == "__main__":
+    insert_room('Not occupied', 'A', 200)

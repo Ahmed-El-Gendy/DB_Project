@@ -9,10 +9,12 @@ def insert_menu(id, price, name):
     )
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest (id, price, name) VALUES (%s, %s, %s)"
+        sql = "INSERT INTO menu (id, price, name) VALUES (%s, %s, %s)"
         data = (id, price, name)
         cursor.execute(sql, data)
         connection.commit()
     finally:
         cursor.close()
         connection.close()
+if __name__ == "__main__":
+    insert_menu(4, 50, 'juice')
