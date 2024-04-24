@@ -1,20 +1,21 @@
 from datetime import datetime
 import pymysql
 
-def insert_tables(table_num, state, chairs_num, guest_id, start, receptionist_id):
+def insert_tables(table_num, state, chairs_num):
     connection = pymysql.connect(
         host='localhost',
         user='root',
         password='Ramy@123',
         database='hotel',
     )
-    date = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO guest (table_num, state, chairs_num, guest_id, date, start, receptionist_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        data = (table_num, state, chairs_num, guest_id, date, start, receptionist_id)
+        sql = "INSERT INTO tables (table_num, state, chairs_num) VALUES (%s, %s, %s)"
+        data = (table_num, state, chairs_num)
         cursor.execute(sql, data)
         connection.commit()
     finally:
         cursor.close()
         connection.close()
+if __name__ == "__main__":
+    insert_tables(30, "Available", 5)
