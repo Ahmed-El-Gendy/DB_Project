@@ -14,6 +14,9 @@ import room
 import guest_order
 import guest_num
 import menu
+import employee
+import feedback
+import guest
 
 class EmployeeManagementApp:
     def __init__(self, master):
@@ -192,13 +195,13 @@ class EmployeeManagementApp:
 
     # Define insert functions here
     def insert_employee(self, id, age, nationality, job, salary, manager_id, name):
-        pass
+        employee.insert_employee(id, age, nationality, job, salary, manager_id, name)
 
     def insert_feedback(self, opinion, rate, guest_id):
-        pass
+        feedback.insert_feedback(opinion, rate, guest_id)
 
     def insert_guest(self, id, name, age, nationality):
-        pass
+        guest.insert_guest(id, name, age, nationality)
 
     def insert_guest_num(self, guest_id, phone_number):
         guest_num.insert_guest_num(guest_id, phone_number)
