@@ -1,7 +1,7 @@
 from datetime import datetime
 import pymysql
 
-def update_tables(table_num, state, guest_id, start, receptionist_id):
+def update_tables(table_num, guest_id, start, receptionist_id, state):
     connection = pymysql.connect(
         host='localhost',
         user='root',

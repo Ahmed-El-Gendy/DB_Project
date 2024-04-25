@@ -1,7 +1,7 @@
 from datetime import datetime
 import pymysql
 
-def insert_tables(table_num, state, chairs_num):
+def insert_tables(table_num, chairs_num, state):
     connection = pymysql.connect(
         host='localhost',
         user='root',

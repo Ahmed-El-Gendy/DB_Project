@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_room(state, clas, price_per_night):
+def insert_room(clas, price_per_night, state):
     connection = pymysql.connect(
         host='localhost',
         user='root',

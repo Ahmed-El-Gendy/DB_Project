@@ -52,7 +52,7 @@ class EmployeeManagementApp:
             if selected_table == "Employee":
                 fields = ["ID:", "Age:", "Nationality:", "Job:", "Salary:", "Manager ID:", "Name:"]
             elif selected_table == "Feedback":
-                fields = ["Opinion:", "Rate:", "Guest ID:"]
+                fields = ["Guest ID:", "Opinion:", "Rate:"]
             elif selected_table == "Guest":
                 fields = ["ID:", "Name:", "Age:", "Nationality:"]
             elif selected_table == "Guest Number":
@@ -62,9 +62,9 @@ class EmployeeManagementApp:
             elif selected_table == "Menu":
                 fields = ["ID:", "Price:", "Name:"]
             elif selected_table == "Room":
-                fields = ["State:", "Class:", "Price per Night:"]
+                fields = ["Class:", "State:"]
             elif selected_table == "Tables":
-                fields = ["Table Number:", "State:", "Chairs Number:"]
+                fields = ["Table Number:", "Chairs Number:", "State:"]
             elif selected_table == "Bill":
                 fields = ["Guest ID:", "Receptionist ID:"]
             else:
@@ -72,10 +72,38 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(insert_window, text=field).grid(row=i+1, column=0)
-                entry = tk.Entry(insert_window)
-                entry.grid(row=i+1, column=1)
-                self.input_entries.append(entry)
+                tk.Label(insert_window, text=field).grid(row=i + 1, column=0)
+                if selected_table == "Tables" and field == "State:":
+                    # Add the dropdown menu for "State" field
+                    state_var = tk.StringVar()
+                    state_dropdown = tk.OptionMenu(insert_window, state_var, "Available", "Not available")
+                    state_dropdown.config(width=15)
+                    state_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the state_var
+                    state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
+                    self.input_entries.append(state_var)  # Append the variable instead of the entry widget
+                elif selected_table == "Room" and field == "State:":
+                    # Add the dropdown menu for "State" field
+                    state_var = tk.StringVar()
+                    state_dropdown = tk.OptionMenu(insert_window, state_var, "Occupied", "Not occupied")
+                    state_dropdown.config(width=15)
+                    state_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the state_var
+                    state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
+                    self.input_entries.append(state_var)  # Append the variable instead of the entry widget
+                elif selected_table == "Feedback" and field == "Rate:":
+                    # Add the dropdown menu for "Rate" field
+                    rate_var = tk.StringVar()
+                    rate_dropdown = tk.OptionMenu(insert_window, rate_var, *range(11))  # Values from 0 to 10
+                    rate_dropdown.config(width=15)
+                    rate_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the rate_var
+                    rate_dropdown.bind("<Configure>", lambda event, var=rate_var: var.set(rate_var.get()))
+                    self.input_entries.append(rate_var)
+                else:
+                    entry = tk.Entry(insert_window)
+                    entry.grid(row=i + 1, column=1)
+                    self.input_entries.append(entry)
 
         # Button to show fields based on selected table
         show_fields_button = tk.Button(insert_window, text="Show Fields", command=show_fields)
@@ -144,9 +172,9 @@ class EmployeeManagementApp:
             elif selected_table == "Menu":
                 fields = ["ID:", "Price:", "Name:"]
             elif selected_table == "Room":
-                fields = ["ID:", "State:", "Guest ID:", "Receptionist ID:", "Interval Duration:"]
+                fields = ["ID:", "Guest ID:", "Receptionist ID:", "Interval Duration:", "State:"]
             elif selected_table == "Tables":
-                fields = ["Table Number:", "State:", "Guest ID:", "Start:", "Receptionist ID:"]
+                fields = ["Table Number:", "Guest ID:", "Start:", "Receptionist ID:", "State:"]
             elif selected_table == "Bill":
                 fields = ["Guest ID:", "Receptionist ID:"]
             else:
@@ -154,10 +182,29 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(update_window, text=field).grid(row=i+1, column=0)
-                entry = tk.Entry(update_window)
-                entry.grid(row=i+1, column=1)
-                self.input_entries.append(entry)
+                tk.Label(update_window, text=field).grid(row=i + 1, column=0)
+                if selected_table == "Tables" and field == "State:":
+                    # Add the dropdown menu for "State" field
+                    state_var = tk.StringVar()
+                    state_dropdown = tk.OptionMenu(update_window, state_var, "Available", "Not available")
+                    state_dropdown.config(width=15)
+                    state_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the state_var
+                    state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
+                    self.input_entries.append(state_var)  # Append the variable instead of the entry widget
+                elif selected_table == "Room" and field == "State:":
+                    # Add the dropdown menu for "State" field
+                    state_var = tk.StringVar()
+                    state_dropdown = tk.OptionMenu(update_window, state_var, "Occupied", "Not occupied")
+                    state_dropdown.config(width=15)
+                    state_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the state_var
+                    state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
+                    self.input_entries.append(state_var)  # Append the variable instead of the entry widget
+                else:
+                    entry = tk.Entry(update_window)
+                    entry.grid(row=i + 1, column=1)
+                    self.input_entries.append(entry)
 
         # Button to show fields based on selected table
         show_fields_button = tk.Button(update_window, text="Show Fields", command=show_fields)
@@ -197,7 +244,7 @@ class EmployeeManagementApp:
     def insert_employee(self, id, age, nationality, job, salary, manager_id, name):
         employee.insert_employee(id, age, nationality, job, salary, manager_id, name)
 
-    def insert_feedback(self, opinion, rate, guest_id):
+    def insert_feedback(self, guest_id, opinion, rate):
         feedback.insert_feedback(opinion, rate, guest_id)
 
     def insert_guest(self, id, name, age, nationality):
@@ -212,11 +259,19 @@ class EmployeeManagementApp:
     def insert_menu(self, id, price, name):
         menu.insert_menu(id, price, name)
 
-    def insert_room(self, state, clas, price_per_night):
-        room.insert_room(state, clas, price_per_night)
+    def insert_room(self, clas, state):
+        price_per_night = 0
+        if clas == 'A':
+            price_per_night = 200
+        elif clas == 'B':
+            price_per_night = 150
+        else:
+            price_per_night = 100
+        room.insert_room(state, price_per_night, clas)
+        print(state)
 
-    def insert_tables(self, table_num, state, chairs_num):
-        tables.insert_tables(table_num, state, chairs_num)
+    def insert_tables(self, table_num, chairs_num, state):
+        tables.insert_tables(table_num, chairs_num, state)
 
     def insert_bill(self, guest_id, receptionist_id):
         bill.insert_bill(guest_id, receptionist_id)
@@ -240,11 +295,10 @@ class EmployeeManagementApp:
     def update_menu(self, id ,price, name):
         update_menu.update_menu(id, price, name)
 
-    def update_room(self, id, state, guest_id, receptionist_id, interval_duration):
-        update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
-
-    def update_tables(self, table_num, state, guest_id, start, receptionist_id):
-        update_tables.update_tables(table_num, state, guest_id, start, receptionist_id)
+    def update_room(self, id, guest_id, receptionist_id, interval_duration, state):
+        update_room.update_room(id, guest_id, receptionist_id, interval_duration, state)
+    def update_tables(self, table_num, guest_id, start, receptionist_id, state):
+        update_tables.update_tables(table_num, guest_id, start, receptionist_id, state)
 
 
 root = tk.Tk()
