@@ -187,7 +187,7 @@ class EmployeeManagementApp:
         update_button = tk.Button(update_window, text="Update", command=update)
         update_button.grid(row=8, columnspan=3)
 
-    # Define your insert functions here
+    # Define insert functions here
     def insert_employee(self, id, age, nationality, job, salary, manager_id, name):
         pass
 
