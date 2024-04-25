@@ -14,10 +14,10 @@ def insert_bill(guest_id, receptionist_id):
 
         total = 0
         cursor = connection.cursor()
-        sql = "SELECT price_per_night FROM room WHERE guest_id = %s"
+        sql = "SELECT price_per_night, interval_duration FROM room WHERE guest_id = %s"
         cursor.execute(sql, (guest_id,))
         results = cursor.fetchall()
-        total += int(results[0][0])
+        total += int(results[0][0] * results[0][1])
         sql = "SELECT menu.price, guest_orders.number_of_order FROM guest_orders join menu on guest_orders.guest_id = %s and guest_orders.meal_id = menu.id"
         cursor.execute(sql, (guest_id,))
         results = cursor.fetchall()
