@@ -1,5 +1,16 @@
 import tkinter as tk
 from tkinter import messagebox
+import update_tables
+import update_room
+import update_menu
+import update_guest_order
+import update_guest_num
+import update_guest
+import update_feedback
+import update_employee
+import tables
+import bill
+import room
 
 class EmployeeManagementApp:
     def __init__(self, master):
@@ -196,38 +207,38 @@ class EmployeeManagementApp:
         pass
 
     def insert_room(self, state, clas, price_per_night):
-        pass
+        room.insert_room(state, clas, price_per_night)
 
     def insert_tables(self, table_num, state, chairs_num):
-        pass
+        tables.insert_tables(table_num, state, chairs_num)
 
     def insert_bill(self, guest_id, receptionist_id):
-        pass
+        bill.insert_bill(guest_id, receptionist_id)
 
     # Define your update functions here
     def update_employee(self, id, age, nationality, job, salary, manager_id, name):
-        pass
+        update_employee.update_employee(id, age, nationality, job, salary, manager_id, name)
 
     def update_feedback(self, id, opinion, rate, guest_id):
-        pass
+        update_feedback.update_feedback(id, opinion, rate, guest_id)
 
     def update_guest(self, id, name, age, nationality):
-        pass
+        update_guest.update_guest(id, name, age, nationality)
 
     def update_guest_num(self, guest_id, old_phone_number, new_phone_number):
-        pass
+        update_guest_num.update_guest_num(guest_id, old_phone_number, new_phone_number)
 
     def update_guest_order(self, guest_id, meal_id, number_of_order):
-        pass
+        update_guest_order.update_guest_order(guest_id, meal_id, number_of_order)
 
     def update_menu(self, id ,price, name):
-        pass
+        update_menu.update_menu(id, price, name)
 
     def update_room(self, id, state, guest_id, receptionist_id, interval_duration):
-        pass
+        update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
 
     def update_tables(self, table_num, state, guest_id, start, receptionist_id):
-        pass
+        update_tables.update_tables(table_num, state, guest_id, start, receptionist_id)
 
 
 root = tk.Tk()
