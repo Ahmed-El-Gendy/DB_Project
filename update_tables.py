@@ -8,6 +8,7 @@ def update_tables(table_num, guest_id, start, receptionist_id, state):
         password='Ramy@123',
         database='hotel',
     )
+    table_num = int(table_num)
     date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     if state == "Available":
         date = None

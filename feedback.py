@@ -7,7 +7,8 @@ def insert_feedback(opinion, rate, guest_id):
         password='Ramy@123',
         database='hotel',
     )
-
+    rate = int(rate)
+    guest_id = int(guest_id)
     try:
         cursor = connection.cursor()
         sql = "INSERT INTO feedback (opinion, rate, guest_id) VALUES (%s, %s, %s)"

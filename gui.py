@@ -172,7 +172,7 @@ class EmployeeManagementApp:
             elif selected_table == "Menu":
                 fields = ["ID:", "Price:", "Name:"]
             elif selected_table == "Room":
-                fields = ["ID:", "Guest ID:", "Receptionist ID:", "Interval Duration:", "State:"]
+                fields = ["ID:", "State:", "Guest ID:", "Receptionist ID:", "Interval Duration:"]
             elif selected_table == "Tables":
                 fields = ["Table Number:", "Guest ID:", "Start:", "Receptionist ID:", "State:"]
             elif selected_table == "Bill":
@@ -195,7 +195,7 @@ class EmployeeManagementApp:
                 elif selected_table == "Room" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
-                    state_dropdown = tk.OptionMenu(update_window, state_var, "Occupied", "Not occupied")
+                    state_dropdown = tk.OptionMenu(update_window, state_var, "Occupied", "not Occupied")
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
                     # Bind the selected value to the state_var
@@ -242,21 +242,35 @@ class EmployeeManagementApp:
 
     # Define insert functions here
     def insert_employee(self, id, age, nationality, job, salary, manager_id, name):
+        id = int(id)
+        age = int(age)
+        salary = int(salary)
+        manager_id = int(manager_id)
         employee.insert_employee(id, age, nationality, job, salary, manager_id, name)
 
     def insert_feedback(self, guest_id, opinion, rate):
+        guest_id = int(guest_id)
+        rate = int(rate)
         feedback.insert_feedback(opinion, rate, guest_id)
 
     def insert_guest(self, id, name, age, nationality):
+        id  = int(id)
+        age = int(age)
         guest.insert_guest(id, name, age, nationality)
 
     def insert_guest_num(self, guest_id, phone_number):
+        guest_id = int(guest_id)
         guest_num.insert_guest_num(guest_id, phone_number)
 
     def insert_guest_order(self, guest_id, meal_id, number_of_order):
+        guest_id = int(guest_id)
+        meal_id = int(meal_id)
+        number_of_order = int(number_of_order)
         guest_order.insert_guest_order(guest_id, meal_id, number_of_order)
 
     def insert_menu(self, id, price, name):
+        id  = int(id)
+        price = int(price)
         menu.insert_menu(id, price, name)
 
     def insert_room(self, clas, state):
@@ -271,33 +285,64 @@ class EmployeeManagementApp:
         print(state)
 
     def insert_tables(self, table_num, chairs_num, state):
+        table_num = int(table_num)
+        chairs_num = int(chairs_num)
         tables.insert_tables(table_num, chairs_num, state)
 
     def insert_bill(self, guest_id, receptionist_id):
+        guest_id = int(guest_id)
+        receptionist_id = int(receptionist_id)
         bill.insert_bill(guest_id, receptionist_id)
 
     # Define your update functions here
     def update_employee(self, id, age, nationality, job, salary, manager_id, name):
+        id = int(id)
+        age = int(age)
+        salary = int(salary)
+        manager_id = int(manager_id)
         update_employee.update_employee(id, age, nationality, job, salary, manager_id, name)
 
     def update_feedback(self, id, opinion, rate, guest_id):
+        id = int(id)
+        rate = int(rate)
+        guest_id = int(guest_id)
         update_feedback.update_feedback(id, opinion, rate, guest_id)
 
     def update_guest(self, id, name, age, nationality):
+        id = int(id)
+        age = int(age)
         update_guest.update_guest(id, name, age, nationality)
 
     def update_guest_num(self, guest_id, old_phone_number, new_phone_number):
+        guest_id = int(guest_id)
         update_guest_num.update_guest_num(guest_id, old_phone_number, new_phone_number)
 
     def update_guest_order(self, guest_id, meal_id, number_of_order):
+        guest_id = int(guest_id)
+        meal_id = int(meal_id)
+        number_of_order = int(number_of_order)
         update_guest_order.update_guest_order(guest_id, meal_id, number_of_order)
 
     def update_menu(self, id ,price, name):
+        id = int(id)
+        price = int(price)
         update_menu.update_menu(id, price, name)
 
-    def update_room(self, id, guest_id, receptionist_id, interval_duration, state):
-        update_room.update_room(id, guest_id, receptionist_id, interval_duration, state)
+    def update_room(self, id, state, guest_id = None, receptionist_id = None, interval_duration =  None):
+        if guest_id == "":
+            guest_id = None
+            receptionist_id = None
+            interval_duration =  None
+        update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
     def update_tables(self, table_num, guest_id, start, receptionist_id, state):
+        if guest_id == "":
+            guest_id = None
+            start = None
+            receptionist_id = None
+        else:
+            table_num = int(table_num)
+            receptionist_id = int(receptionist_id)
+            guest_id = int(guest_id)
         update_tables.update_tables(table_num, guest_id, start, receptionist_id, state)
 
 
