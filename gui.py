@@ -11,6 +11,9 @@ import update_employee
 import tables
 import bill
 import room
+import guest_order
+import guest_num
+import menu
 
 class EmployeeManagementApp:
     def __init__(self, master):
@@ -198,13 +201,13 @@ class EmployeeManagementApp:
         pass
 
     def insert_guest_num(self, guest_id, phone_number):
-        pass
+        guest_num.insert_guest_num(guest_id, phone_number)
 
     def insert_guest_order(self, guest_id, meal_id, number_of_order):
-        pass
+        guest_order.insert_guest_order(guest_id, meal_id, number_of_order)
 
     def insert_menu(self, id, price, name):
-        pass
+        menu.insert_menu(id, price, name)
 
     def insert_room(self, state, clas, price_per_night):
         room.insert_room(state, clas, price_per_night)
