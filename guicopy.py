@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-import update_tables
+"""import update_tables
 import update_room
 import update_menu
 import update_guest_order
@@ -16,7 +16,7 @@ import guest_num
 import menu
 import employee
 import feedback
-import guest
+import guest"""
 
 class EmployeeManagementApp:
     def __init__(self, master):
