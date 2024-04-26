@@ -8,9 +8,15 @@ def update_room(id, state, guest_id = None, receptionist_id = None, interval_dur
         password='Ramy@123',
         database='hotel',
     )
-    print(f"{id} {guest_id} {receptionist_id} {interval_duration} {state}")
     try:
         if interval_duration != None:
+            if state == 'Occupied':
+                cursor = connection.cursor()
+                sql = "SELECT state FROM room WHERE id = %s"
+                cursor.execute(sql, (id,))
+                results = cursor.fetchall()
+                if results[0][0] == 'Occupied':
+                    raise ValueError
             id = int(id)
             interval_duration = int(interval_duration)
             receptionist_id = int(receptionist_id)
@@ -27,5 +33,4 @@ def update_room(id, state, guest_id = None, receptionist_id = None, interval_dur
     finally:
         cursor.close()
         connection.close()
-if __name__ == "__main__":
-    update_room(1,None,None,None,'Not occupied')
+

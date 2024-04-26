@@ -38,4 +38,4 @@ def insert_bill(guest_id, receptionist_id):
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    insert_bill(1, 2)
+    insert_bill(100, 2)
