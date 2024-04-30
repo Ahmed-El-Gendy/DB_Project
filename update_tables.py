@@ -29,4 +29,4 @@ def update_tables(table_num, guest_id, start, receptionist_id, state):
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    update_tables(5, 1, "2024-7-21 00:00:00", 2, "Not available")
+    update_tables(4, 1, "2024-7-21 00:00:00", 2, "Not available")
