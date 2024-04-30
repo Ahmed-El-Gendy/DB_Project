@@ -108,7 +108,7 @@ class EmployeeManagementApp:
                     meals = show_menu.show_menu()
                     menu_list = []
                     for meal in meals:
-                        menu_list.append(f"ID: {meal[0]}   Name: {meal[1]}   Price: {meal[2]}")
+                        menu_list.append(f"ID: {meal[0]}  {meal[1]}  {meal[2]}")
                     state_dropdown = tk.OptionMenu(insert_window, state_var, *menu_list)
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
