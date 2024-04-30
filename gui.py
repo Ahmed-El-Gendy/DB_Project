@@ -283,7 +283,13 @@ class EmployeeManagementApp:
 
     def insert_guest_order(self, guest_id, meal_id, number_of_order):
         guest_id = int(guest_id)
-        meal_id = int(meal_id)
+        if isinstance(meal_id, str):
+            sum = 0
+            for i in range(4, 7):
+                if meal_id[i] != ' ':
+                    sum *= 10
+                    sum += int(meal_id[i])
+            meal_id = sum
         number_of_order = int(number_of_order)
         guest_order.insert_guest_order(guest_id, meal_id, number_of_order)
 
