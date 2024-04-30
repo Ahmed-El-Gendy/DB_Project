@@ -196,8 +196,7 @@ class EmployeeManagementApp:
                 elif selected_table == "Room" and field == "ID:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
-                    #rooms = show_rooms.show_rooms()
-                    rooms = ((3, 'C', 100), (150, 'A', 200))
+                    rooms = show_rooms.show_rooms()
                     room_list = []
                     for room in rooms:
                         room_list.append(f"ID: {room[0]}   Class: {room[1]}   Price: {room[2]}")
