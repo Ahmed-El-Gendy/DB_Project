@@ -26,7 +26,7 @@ class EmployeeManagementApp:
         root.geometry(f"{683}x{384}")
         self.master = master
         master.title("Hotal System")
-        root.resizable()
+        root.resizable(0, 0)
         root.iconbitmap('hotel.ico')
         root.config(background='#F7DCB9')
         tk.Label(root, text="Welcome to [Hotel System]", bg="#F7DCB9", font=("Arial", 20, "bold"),
