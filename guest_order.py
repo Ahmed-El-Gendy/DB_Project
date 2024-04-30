@@ -9,7 +9,6 @@ def insert_guest_order(guest_id, meal_id, number_of_order):
                 sum += int(meal_id[i])
         meal_id = sum
 
-
     connection = pymysql.connect(
         host='localhost',
         user='root',
