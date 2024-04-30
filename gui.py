@@ -333,12 +333,12 @@ class EmployeeManagementApp:
         price = int(price)
         update_menu.update_menu(id, price, name)
 
-    def update_room(self, id, state, guest_id = None, receptionist_id = None, interval_duration =  None):
+    def update_room(self, id, guest_id = None, receptionist_id = None, interval_duration =  None):
         if guest_id == "":
             guest_id = None
             receptionist_id = None
             interval_duration =  None
-        update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
+        update_room.update_room(id, guest_id, receptionist_id, interval_duration)
     def update_tables(self, table_num, guest_id, start, receptionist_id, state):
         if guest_id == "":
             guest_id = None
