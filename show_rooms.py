@@ -8,14 +8,14 @@ def show_rooms():
         database='hotel',
     )
     try:
-
         cursor = connection.cursor()
         sql = "SELECT id, class, price_per_night FROM room WHERE state = %s"
         cursor.execute(sql, ("not Occupied",))
         results = cursor.fetchall()
-        print(results)
     finally:
         cursor.close()
         connection.close()
+
+        return results
 if __name__ == "__main__":
     show_rooms()
