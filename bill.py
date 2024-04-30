@@ -1,5 +1,5 @@
 import pymysql
-from update_room import update_room
+from update_room import update_room1
 from delete_order import delete_orders
 
 def insert_bill(guest_id, receptionist_id):
@@ -30,7 +30,7 @@ def insert_bill(guest_id, receptionist_id):
         sql = "SELECT id FROM room WHERE guest_id = %s"
         cursor.execute(sql, (guest_id,))
         results = cursor.fetchall()
-        update_room(int(results[0][0]), 'Not occupied', None, None, None)
+        update_room1(int(results[0][0]), 'Not occupied', None, None, None)
         delete_orders(guest_id)
     except pymysql.Error as e:
         print(f"erorr {e}")

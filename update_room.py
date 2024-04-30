@@ -1,7 +1,7 @@
 import pymysql
 from datetime import datetime, timedelta
 
-def update_room(id, state, guest_id = None, receptionist_id = None, interval_duration = None):
+def update_room1(id, state, guest_id = None, receptionist_id = None, interval_duration = None):
     connection = pymysql.connect(
         host='localhost',
         user='root',
