@@ -1,6 +1,15 @@
 import pymysql
 
 def insert_guest_order(guest_id, meal_id, number_of_order):
+    if isinstance(meal_id, str):
+        sum = 0
+        for i in range(4,7):
+            if meal_id[i] != ' ':
+                sum *= 10
+                sum += int(meal_id[i])
+        meal_id = sum
+
+
     connection = pymysql.connect(
         host='localhost',
         user='root',

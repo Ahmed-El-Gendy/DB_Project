@@ -18,6 +18,7 @@ import employee
 import feedback
 import guest
 import show_rooms
+import show_menu
 
 class EmployeeManagementApp:
     def __init__(self, master):
@@ -169,7 +170,7 @@ class EmployeeManagementApp:
             elif selected_table == "Guest Number":
                 fields = ["Guest ID:", "Old Phone Number:", "New Phone Number:"]
             elif selected_table == "Guest Order":
-                fields = ["Guest ID:", "Meal ID:", "Number of Order:"]
+                fields = ["Guest ID:", "Meal:", "Number of Order:"]
             elif selected_table == "Menu":
                 fields = ["ID:", "Price:", "Name:"]
             elif selected_table == "Room":
@@ -201,6 +202,19 @@ class EmployeeManagementApp:
                     for room in rooms:
                         room_list.append(f"ID: {room[0]}   Class: {room[1]}   Price: {room[2]}")
                     state_dropdown = tk.OptionMenu(update_window, state_var, *room_list)
+                    state_dropdown.config(width=15)
+                    state_dropdown.grid(row=i + 1, column=1)
+                    # Bind the selected value to the state_var
+                    state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
+                    self.input_entries.append(state_var)  # Append the variable instead of the entry widget
+                elif selected_table == "Guest Order" and field == "Meal:":
+                    # Add the dropdown menu for "State" field
+                    state_var = tk.StringVar()
+                    meals = show_menu.show_menu()
+                    menu_list = []
+                    for meal in meals:
+                        menu_list.append(f"ID: {meal[0]}   Name: {meal[1]}   Price: {meal[2]}")
+                    state_dropdown = tk.OptionMenu(update_window, state_var, *menu_list)
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
                     # Bind the selected value to the state_var
