@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-"""import update_tables
+import update_tables
 import update_room
 import update_menu
 import update_guest_order
@@ -16,21 +16,22 @@ import guest_num
 import menu
 import employee
 import feedback
-import guest"""
+import guest
 
 class EmployeeManagementApp:
     def __init__(self, master):
         self.master = master
         master.title("Employee Management System")
+        master.geometry("320x100")
+        self.insert_button = tk.Button(master, text="Insert", command=self.insert_data, width=20, height=2, background='lightblue')
+        self.insert_button.grid(row=0,column=0,padx=5)
 
-        self.insert_button = tk.Button(master, text="Insert", command=self.insert_data)
-        self.insert_button.pack()
-
-        self.update_button = tk.Button(master, text="Update", command=self.update_data)
-        self.update_button.pack()
+        self.update_button = tk.Button(master, text="Update", command=self.update_data, width=20, height=2, background='lightblue')
+        self.update_button.grid(row=0,column=1)
 
     def insert_data(self):
         insert_window = tk.Toplevel(self.master)
+        insert_window.geometry("200x300")
         insert_window.title("Insert Data")
 
         # Table selection
@@ -141,6 +142,7 @@ class EmployeeManagementApp:
 
     def update_data(self):
         update_window = tk.Toplevel(self.master)
+        update_window.geometry("200x300")
         update_window.title("Update Data")
 
         # Table selection
@@ -246,32 +248,32 @@ class EmployeeManagementApp:
         age = int(age)
         salary = int(salary)
         manager_id = int(manager_id)
-        #employee.insert_employee(id, age, nationality, job, salary, manager_id, name)
+        employee.insert_employee(id, age, nationality, job, salary, manager_id, name)
 
     def insert_feedback(self, guest_id, opinion, rate):
         guest_id = int(guest_id)
         rate = int(rate)
-        #feedback.insert_feedback(opinion, rate, guest_id)
+        feedback.insert_feedback(opinion, rate, guest_id)
 
     def insert_guest(self, id, name, age, nationality):
         id  = int(id)
         age = int(age)
-        #guest.insert_guest(id, name, age, nationality)
+        guest.insert_guest(id, name, age, nationality)
 
     def insert_guest_num(self, guest_id, phone_number):
         guest_id = int(guest_id)
-        #guest_num.insert_guest_num(guest_id, phone_number)
+        guest_num.insert_guest_num(guest_id, phone_number)
 
     def insert_guest_order(self, guest_id, meal_id, number_of_order):
         guest_id = int(guest_id)
         meal_id = int(meal_id)
         number_of_order = int(number_of_order)
-        #guest_order.insert_guest_order(guest_id, meal_id, number_of_order)
+        guest_order.insert_guest_order(guest_id, meal_id, number_of_order)
 
     def insert_menu(self, id, price, name):
         id  = int(id)
         price = int(price)
-        #menu.insert_menu(id, price, name)
+        menu.insert_menu(id, price, name)
 
     def insert_room(self, clas, state):
         price_per_night = 0
@@ -281,17 +283,18 @@ class EmployeeManagementApp:
             price_per_night = 150
         else:
             price_per_night = 100
-        #room.insert_room(state, price_per_night, clas)
+        room.insert_room(state, price_per_night, clas)
+        print(state)
 
     def insert_tables(self, table_num, chairs_num, state):
         table_num = int(table_num)
         chairs_num = int(chairs_num)
-        #tables.insert_tables(table_num, chairs_num, state)
+        tables.insert_tables(table_num, chairs_num, state)
 
     def insert_bill(self, guest_id, receptionist_id):
         guest_id = int(guest_id)
         receptionist_id = int(receptionist_id)
-        #bill.insert_bill(guest_id, receptionist_id)
+        bill.insert_bill(guest_id, receptionist_id)
 
     # Define your update functions here
     def update_employee(self, id, age, nationality, job, salary, manager_id, name):
@@ -299,40 +302,40 @@ class EmployeeManagementApp:
         age = int(age)
         salary = int(salary)
         manager_id = int(manager_id)
-        #update_employee.update_employee(id, age, nationality, job, salary, manager_id, name)
+        update_employee.update_employee(id, age, nationality, job, salary, manager_id, name)
 
     def update_feedback(self, id, opinion, rate, guest_id):
         id = int(id)
         rate = int(rate)
         guest_id = int(guest_id)
-        #update_feedback.update_feedback(id, opinion, rate, guest_id)
+        update_feedback.update_feedback(id, opinion, rate, guest_id)
 
     def update_guest(self, id, name, age, nationality):
         id = int(id)
         age = int(age)
-        #update_guest.update_guest(id, name, age, nationality)
+        update_guest.update_guest(id, name, age, nationality)
 
     def update_guest_num(self, guest_id, old_phone_number, new_phone_number):
         guest_id = int(guest_id)
-        #update_guest_num.update_guest_num(guest_id, old_phone_number, new_phone_number)
+        update_guest_num.update_guest_num(guest_id, old_phone_number, new_phone_number)
 
     def update_guest_order(self, guest_id, meal_id, number_of_order):
         guest_id = int(guest_id)
         meal_id = int(meal_id)
         number_of_order = int(number_of_order)
-        #update_guest_order.update_guest_order(guest_id, meal_id, number_of_order)
+        update_guest_order.update_guest_order(guest_id, meal_id, number_of_order)
 
     def update_menu(self, id ,price, name):
         id = int(id)
         price = int(price)
-        #update_menu.update_menu(id, price, name)
+        update_menu.update_menu(id, price, name)
 
     def update_room(self, id, state, guest_id = None, receptionist_id = None, interval_duration =  None):
         if guest_id == "":
             guest_id = None
             receptionist_id = None
             interval_duration =  None
-        #update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
+        update_room.update_room(id, state, guest_id, receptionist_id, interval_duration)
     def update_tables(self, table_num, guest_id, start, receptionist_id, state):
         if guest_id == "":
             guest_id = None
@@ -342,7 +345,7 @@ class EmployeeManagementApp:
             table_num = int(table_num)
             receptionist_id = int(receptionist_id)
             guest_id = int(guest_id)
-        #update_tables.update_tables(table_num, guest_id, start, receptionist_id, state)
+        update_tables.update_tables(table_num, guest_id, start, receptionist_id, state)
 
 
 root = tk.Tk()
