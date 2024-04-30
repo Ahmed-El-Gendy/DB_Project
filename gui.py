@@ -196,9 +196,12 @@ class EmployeeManagementApp:
                 elif selected_table == "Room" and field == "ID:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
-                    rooms = show_rooms.show_rooms()
-                    print(rooms)
-                    state_dropdown = tk.OptionMenu(update_window, state_var, "Occupied", "not Occupied")
+                    #rooms = show_rooms.show_rooms()
+                    rooms = ((3, 'C', 100), (150, 'A', 200))
+                    room_list = []
+                    for room in rooms:
+                        room_list.append(f"ID: {room[0]}   Class: {room[1]}   Price: {room[2]}")
+                    state_dropdown = tk.OptionMenu(update_window, state_var, *room_list)
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
                     # Bind the selected value to the state_var

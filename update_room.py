@@ -1,7 +1,15 @@
 import pymysql
 from datetime import datetime, timedelta
 
-def update_room(id, state, guest_id = None, receptionist_id = None, interval_duration = None):
+def update_room(id, state = 'not Occupied', guest_id = None, receptionist_id = None, interval_duration = None):
+    print(id, state, guest_id, receptionist_id, interval_duration)
+    if isinstance(id, str):
+        sum = 0
+        for i in range(4,7):
+            if id[i] != ' ':
+                sum *= 10
+                sum += int(id[i])
+        id = sum
     connection = pymysql.connect(
         host='localhost',
         user='root',
