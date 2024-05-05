@@ -47,6 +47,7 @@ class EmployeeManagementApp:
     def insert_data(self):
         insert_window = tk.Toplevel(self.master)
         insert_window.title("Insert Data")
+        insert_window.iconbitmap('hotel.ico')
 
         # Table selection
         table_label = tk.Label(insert_window, text="Select Table:")
@@ -170,6 +171,7 @@ class EmployeeManagementApp:
     def update_data(self):
         update_window = tk.Toplevel(self.master)
         update_window.title("Update Data")
+        update_window.iconbitmap('hotel.ico')
 
         # Table selection
         table_label = tk.Label(update_window, text="Select Table:")
