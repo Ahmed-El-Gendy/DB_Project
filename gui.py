@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 import update_tables
 import update_room
@@ -58,7 +59,13 @@ class EmployeeManagementApp:
         table_dropdown.grid(row=0, column=1)
 
         # Function to show specific fields based on selected table
+        room_option_menus = []
+        state_option_menus = []
         def show_fields():
+            for option_menu in room_option_menus:
+                option_menu.grid_forget()
+            for option_menu in state_option_menus:
+                option_menu.grid_forget()
             selected_table = table_var.get()
             # Clear previous fields
             for widget in insert_window.winfo_children():
@@ -113,6 +120,9 @@ class EmployeeManagementApp:
                     rate_dropdown = tk.OptionMenu(insert_window, rate_var, *range(11))  # Values from 0 to 10
                     rate_dropdown.config(width=15)
                     rate_dropdown.grid(row=i + 1, column=1)
+
+                    state_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the rate_var
                     rate_dropdown.bind("<Configure>", lambda event, var=rate_var: var.set(rate_var.get()))
                     self.input_entries.append(rate_var)
@@ -126,6 +136,9 @@ class EmployeeManagementApp:
                     state_dropdown = tk.OptionMenu(insert_window, state_var, *menu_list)
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
+
+                    state_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the state_var
                     state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
                     self.input_entries.append(state_var)  # Append the variable instead of the entry widget
@@ -182,12 +195,19 @@ class EmployeeManagementApp:
         table_dropdown.grid(row=0, column=1)
 
         # Function to show specific fields based on selected table
+        room_option_menus = []
+        state_option_menus = []
         def show_fields():
+            for option_menu in room_option_menus:
+                option_menu.grid_forget()
+            for option_menu in state_option_menus:
+                option_menu.grid_forget()
             selected_table = table_var.get()
             # Clear previous fields
             for widget in update_window.winfo_children():
                 if isinstance(widget, tk.Entry) or isinstance(widget, tk.Label):
                     widget.grid_forget()
+
             # Show fields based on selected table
             if selected_table == "Employee":
                 fields = ["ID:", "Age:", "Nationality:", "Job:", "Salary:", "Manager ID:", "Name:"]
@@ -219,6 +239,9 @@ class EmployeeManagementApp:
                     state_dropdown = tk.OptionMenu(update_window, state_var, "Available", "Not available")
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
+
+                    state_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the state_var
                     state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
                     self.input_entries.append(state_var)  # Append the variable instead of the entry widget
@@ -232,6 +255,9 @@ class EmployeeManagementApp:
                     state_dropdown = tk.OptionMenu(update_window, state_var, *room_list)
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
+
+                    room_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the state_var
                     state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
                     self.input_entries.append(state_var)  # Append the variable instead of the entry widget
