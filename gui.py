@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from PIL import Image, ImageDraw
 import update_tables
 import update_room
 import update_menu
@@ -27,21 +28,23 @@ class EmployeeManagementApp:
         root.geometry(f"{683}x{384}")
         self.master = master
         master.title("Hotal System")
-        root.resizable(0, 0)
+        #root.resizable(0, 0)
         root.iconbitmap('hotel.ico')
         root.config(background='#F7DCB9')
         tk.Label(root, text="Welcome to [Hotel System]", bg="#F7DCB9", font=("Arial", 20, "bold"),
-                 fg="#000000").place(x=180, y=50)
+                 fg="#000000").place(x=180, y=50, relx=0.25, rely=0.1, anchor="center")
         tk.Label(root, text="Would you like to INSERT or UPDATE data?", bg="#F7DCB9",
-                 font=("Arial", 20, "bold"), fg="#000000").place(x=70, y=160)
+                 font=("Arial", 20, "bold"), fg="#000000").place(x=70, y=160, relx=0.4, rely=0.1, anchor="center")
+
+        #  place(relx=0.5, rely=0.1, anchor="center")
 
         self.insert_button = tk.Button(master, text="Insert", command=self.insert_data, bg="#DEAC80", fg="#000000")
-        self.insert_button.place(x=100, y=250)
+        self.insert_button.place(x=100, y=250, relx=0.2, rely=0.1, anchor="center")
         self.insert_button.config(width=self.insert_button.winfo_width() * 10,
                                   height=self.insert_button.winfo_height() * 4)
 
         self.update_button = tk.Button(master, text="Update", command=self.update_data, bg="#DEAC80", fg="#000000")
-        self.update_button.place(x=500, y=250)
+        self.update_button.place(x=400, y=250, relx=0.1, rely=0.1, anchor="center")
         self.update_button.config(width=self.insert_button.winfo_width() * 10,
                                   height=self.insert_button.winfo_height() * 4)
 
@@ -49,9 +52,9 @@ class EmployeeManagementApp:
         insert_window = tk.Toplevel(self.master)
         insert_window.title("Insert Data")
         insert_window.iconbitmap('hotel.ico')
-
+        insert_window.config(background='#F7DCB9')
         # Table selection
-        table_label = tk.Label(insert_window, text="Select Table:")
+        table_label = tk.Label(insert_window, text="Select Table:", bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9")
         table_label.grid(row=0, column=0)
         table_var = tk.StringVar()
         table_var.set("Employee")  # Default value
@@ -95,13 +98,16 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(insert_window, text=field).grid(row=i + 1, column=0)
+                tk.Label(insert_window, text=field, bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9").grid(row=i + 1, column=0)
                 if selected_table == "Tables" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
                     state_dropdown = tk.OptionMenu(insert_window, state_var, "Available", "Not available")
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
+
+                    state_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the state_var
                     state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
                     self.input_entries.append(state_var)  # Append the variable instead of the entry widget
@@ -111,6 +117,9 @@ class EmployeeManagementApp:
                     state_dropdown = tk.OptionMenu(insert_window, state_var, "Occupied", "Not occupied")
                     state_dropdown.config(width=15)
                     state_dropdown.grid(row=i + 1, column=1)
+
+                    state_option_menus.append(state_dropdown)
+
                     # Bind the selected value to the state_var
                     state_dropdown.bind("<Configure>", lambda event, var=state_var: var.set(state_var.get()))
                     self.input_entries.append(state_var)  # Append the variable instead of the entry widget
@@ -121,7 +130,7 @@ class EmployeeManagementApp:
                     rate_dropdown.config(width=15)
                     rate_dropdown.grid(row=i + 1, column=1)
 
-                    state_option_menus.append(state_dropdown)
+                    state_option_menus.append(rate_dropdown)
 
                     # Bind the selected value to the rate_var
                     rate_dropdown.bind("<Configure>", lambda event, var=rate_var: var.set(rate_var.get()))
@@ -148,7 +157,7 @@ class EmployeeManagementApp:
                     self.input_entries.append(entry)
 
         # Button to show fields based on selected table
-        show_fields_button = tk.Button(insert_window, text="Show Fields", command=show_fields)
+        show_fields_button = tk.Button(insert_window, text="Show Fields", command=show_fields, bg="#DEAC80", fg="#000000")
         show_fields_button.grid(row=0, column=2)
 
         # Function to insert data
@@ -178,16 +187,16 @@ class EmployeeManagementApp:
             insert_window.destroy()
 
         # Insert button
-        insert_button = tk.Button(insert_window, text="Insert", command=insert)
+        insert_button = tk.Button(insert_window, text="Insert", command=insert, bg="#DEAC80", fg="#000000")
         insert_button.grid(row=8, columnspan=3)
 
     def update_data(self):
         update_window = tk.Toplevel(self.master)
         update_window.title("Update Data")
         update_window.iconbitmap('hotel.ico')
-
+        update_window.config(background='#F7DCB9')
         # Table selection
-        table_label = tk.Label(update_window, text="Select Table:")
+        table_label = tk.Label(update_window, text="Select Table:", bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9")
         table_label.grid(row=0, column=0)
         table_var = tk.StringVar()
         table_var.set("Employee")  # Default value
@@ -232,7 +241,7 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(update_window, text=field).grid(row=i + 1, column=0)
+                tk.Label(update_window, text=field, bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9").grid(row=i + 1, column=0)
                 if selected_table == "Tables" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
@@ -267,7 +276,7 @@ class EmployeeManagementApp:
                     self.input_entries.append(entry)
 
         # Button to show fields based on selected table
-        show_fields_button = tk.Button(update_window, text="Show Fields", command=show_fields)
+        show_fields_button = tk.Button(update_window, text="Show Fields", command=show_fields, bg="#DEAC80", fg="#000000")
         show_fields_button.grid(row=0, column=2)
 
         # Function to update data
@@ -297,7 +306,7 @@ class EmployeeManagementApp:
             update_window.destroy()
 
         # Update button
-        update_button = tk.Button(update_window, text="Update", command=update)
+        update_button = tk.Button(update_window, text="Update", command=update, bg="#DEAC80", fg="#000000")
         update_button.grid(row=8, columnspan=3)
 
     # Define insert functions here
