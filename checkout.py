@@ -41,4 +41,4 @@ def print_list_of_strings(strings):
 my_list = ['Bill', 'Hello', 'World', 'GitHub', 'Copilot']
 
 # Call the function to print the list in a new window
-print_list_of_strings(my_list)
+#print_list_of_strings(my_list)
