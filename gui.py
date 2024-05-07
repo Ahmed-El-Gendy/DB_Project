@@ -29,7 +29,7 @@ class EmployeeManagementApp:
         self.master = master
         master.title("Hotal System")
         #root.resizable(0, 0)
-        #root.iconbitmap('hotel.ico')
+        root.iconbitmap('hotel.ico')
         root.config(background='#F7DCB9')
         tk.Label(root, text="Welcome to [Hotel System]", bg="#F7DCB9", font=("Arial", 20, "bold"),
                  fg="#000000").place(x=180, y=50, relx=0.25, rely=0.1, anchor="center")
@@ -51,7 +51,7 @@ class EmployeeManagementApp:
     def insert_data(self):
         insert_window = tk.Toplevel(self.master)
         insert_window.title("Insert Data")
-        #insert_window.iconbitmap('hotel.ico')
+        insert_window.iconbitmap('hotel.ico')
         insert_window.config(background='#F7DCB9')
         # Table selection
         table_label = tk.Label(insert_window, text="Select Table:", bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9")
@@ -200,7 +200,7 @@ class EmployeeManagementApp:
     def update_data(self):
         update_window = tk.Toplevel(self.master)
         update_window.title("Update Data")
-        #update_window.iconbitmap('hotel.ico')
+        update_window.iconbitmap('hotel.ico')
         update_window.config(background='#F7DCB9')
         # Table selection
         table_label = tk.Label(update_window, text="Select Table:", bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9")
