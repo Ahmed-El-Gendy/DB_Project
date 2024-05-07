@@ -20,6 +20,7 @@ import feedback
 import guest
 import show_rooms
 import show_menu
+import checkout
 
 class EmployeeManagementApp:
     def __init__(self, master):
@@ -161,6 +162,8 @@ class EmployeeManagementApp:
 
         # Function to insert data
         def insert():
+            global checks
+            sagoda = False
             selected_table = table_var.get()
             data = [entry.get() for entry in self.input_entries]
             # Call the corresponding insert function based on selected table
@@ -182,8 +185,13 @@ class EmployeeManagementApp:
                 self.insert_tables(*data)
             elif selected_table == "Bill":
                 self.insert_bill(*data)
+                sagoda = True
             messagebox.showinfo("Success", "Data inserted successfully!")
             insert_window.destroy()
+            if sagoda:
+                sagoda = False
+                checkout.print_list_of_strings(checks)
+
 
         # Insert button
         insert_button = tk.Button(insert_window, text="Insert", command=insert, bg="#DEAC80", fg="#000000")
@@ -364,9 +372,10 @@ class EmployeeManagementApp:
         tables.insert_tables(table_num, chairs_num, state)
 
     def insert_bill(self, guest_id, receptionist_id):
+        global checks
         guest_id = int(guest_id)
         receptionist_id = int(receptionist_id)
-        bill.insert_bill(guest_id, receptionist_id)
+        checks = bill.insert_bill(guest_id, receptionist_id)
 
     # Define your update functions here
     def update_employee(self, id, age, nationality, job, salary, manager_id, name):
