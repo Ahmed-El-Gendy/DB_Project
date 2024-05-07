@@ -25,10 +25,11 @@ def print_list_of_strings(strings):
         elif cnt == 2:
             text_widget.insert(tk.END, "\nOrders:\n", "fnormal")
 
+
         text_widget.insert(tk.END, '\t' + strings[i] + '\n', "normal")
         cnt += 1
-    text_widget.insert(tk.END, "\nTotal\n", "fnormal")
-    text_widget.insert(tk.END, '\t' + strings[-1] + ' $\n', "normal")
+    text_widget.insert(tk.END, "\nTotal:\n", "fnormal")
+    text_widget.insert(tk.END, '\t' + strings[-1] + '$\n', "normal")
 
 
     # Configure the text widget background
@@ -41,4 +42,4 @@ def print_list_of_strings(strings):
 my_list = ['Bill', 'Hello', 'World', 'GitHub', 'Copilot']
 
 # Call the function to print the list in a new window
-print_list_of_strings(my_list)
+#print_list_of_strings(my_list)
