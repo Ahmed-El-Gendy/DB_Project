@@ -31,32 +31,36 @@ class EmployeeManagementApp:
         master.config(background='#F7DCB9')
 
         self.style = ttk.Style()
-        self.style.configure('TFrame', background='#F7DCB9')  # Set background color for Frame
-        self.style.configure('TLabel', background='#F7DCB9')  # Set background color for Label
-        self.style.configure('TButton', background='#DEAC80')  # Set background color for Button
+        self.style.configure('TFrame', background='#E8DFCA')  # Set background color for Frame
+        self.style.configure('TLabel', background='#E8DFCA')  # Set background color for Label
+        self.style.configure('TButton', background='#E8DFCA')  # Set background color for Button
 
         self.main_frame = ttk.Frame(master, padding="20")
         self.main_frame.pack()
 
-        ttk.Label(self.main_frame, text="Welcome to Hotel System", font=("Baskerville Old Face", 20, "bold"),
+        ttk.Label(self.main_frame, text="Welcome to Hotel System", font=("Baskerville Old Face", 25, "bold"),
                   foreground="#000000").grid(row=0, column=0, pady=10)
 
         ttk.Label(self.main_frame, text="Would you like to INSERT or UPDATE data?",
                   font=("Baskerville Old Face", 20, "bold"), foreground="#000000").grid(row=1, column=0, pady=10)
 
-        self.insert_button = ttk.Button(self.main_frame, text="Insert", command=self.insert_data, style="TButton")
+        self.insert_button = ttk.Button(self.main_frame, text="Insert", command=self.insert_data,
+                                        style="TButton.TButton")
         self.insert_button.grid(row=2, column=0, pady=10)
+        self.style.configure('TButton.TButton', font=('Arial', 12))  # Change font size to 12
 
-        self.update_button = ttk.Button(self.main_frame, text="Update", command=self.update_data, style="TButton")
+        self.update_button = ttk.Button(self.main_frame, text="Update", command=self.update_data,
+                                        style="TButton.TButton")
         self.update_button.grid(row=3, column=0, pady=10)
+        self.style.configure('TButton.TButton', font=('Arial', 12))  # Change font size to 12
 
     def insert_data(self):
         insert_window = tk.Toplevel(self.master)
         insert_window.title("Insert Data")
         insert_window.iconbitmap('hotel.ico')
-        insert_window.config(background='#F7DCB9')
+        insert_window.config(background='#FFE0B5')
 
-        table_label = ttk.Label(insert_window, text="Select Table:", background="#F7DCB9", font=("Arial", 12, "bold"))
+        table_label = ttk.Label(insert_window, text="Select Table:", background="#FFE0B5", font=("Arial", 14, "bold"))
         table_label.grid(row=0, column=0)
         table_var = tk.StringVar()
         table_var.set("Employee")
@@ -67,6 +71,7 @@ class EmployeeManagementApp:
         # Function to show specific fields based on selected table
         room_option_menus = []
         state_option_menus = []
+
         def show_fields():
             for option_menu in room_option_menus:
                 option_menu.grid_forget()
@@ -101,12 +106,13 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(insert_window, text=field, bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9").grid(row=i + 1, column=0)
+                tk.Label(insert_window, text=field, bg="#FFE0B5", highlightbackground="#FFE0B5",
+                         highlightcolor="#FFE0B5", font=("Arial", 12)).grid(row=i + 1, column=0)
                 if selected_table == "Tables" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
                     state_combobox = ttk.Combobox(insert_window, textvariable=state_var,
-                                                  values=["Available", "Not available"], width=15)
+                                                  values=["Available", "Not available"], width=20)
                     state_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(state_combobox)
@@ -120,7 +126,7 @@ class EmployeeManagementApp:
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
                     state_combobox = ttk.Combobox(insert_window, textvariable=state_var,
-                                                  values=["Occupied", "Not occupied"], width=15)
+                                                  values=["Occupied", "Not occupied"], width=20)
                     state_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(state_combobox)
@@ -134,7 +140,7 @@ class EmployeeManagementApp:
                     # Add the dropdown menu for "Rate" field
                     rate_var = tk.StringVar()
                     rate_combobox = ttk.Combobox(insert_window, textvariable=rate_var, values=list(range(11)),
-                                                 width=15)  # Values from 0 to 10
+                                                 width=20)
                     rate_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(rate_combobox)
@@ -148,7 +154,7 @@ class EmployeeManagementApp:
                     meal_var = tk.StringVar()
                     meals = show_menu.show_menu()
                     menu_list = [f"ID: {meal[0]}  {meal[1]}  {meal[2]}$" for meal in meals]
-                    meal_combobox = ttk.Combobox(insert_window, textvariable=meal_var, values=menu_list, width=15)
+                    meal_combobox = ttk.Combobox(insert_window, textvariable=meal_var, values=menu_list, width=20)
                     meal_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(meal_combobox)
@@ -161,6 +167,10 @@ class EmployeeManagementApp:
                     entry = tk.Entry(insert_window)
                     entry.grid(row=i + 1, column=1)
                     self.input_entries.append(entry)
+
+            # Adjust window size based on the number of fields
+            insert_window.update_idletasks()  # Update the window to calculate its size
+            insert_window.geometry("{}x{}".format(insert_window.winfo_reqwidth(), insert_window.winfo_reqheight()))
 
         # Button to show fields based on selected table
         show_fields_button = ttk.Button(insert_window, text="Show Fields", command=show_fields, style="TButton")
@@ -198,7 +208,6 @@ class EmployeeManagementApp:
                 sagoda = False
                 checkout.print_list_of_strings(checks)
 
-
         # Insert button
         insert_button = ttk.Button(insert_window, text="Insert", command=insert, style="TButton")
         insert_button.grid(row=8, columnspan=3)
@@ -207,9 +216,9 @@ class EmployeeManagementApp:
         update_window = tk.Toplevel(self.master)
         update_window.title("Update Data")
         update_window.iconbitmap('hotel.ico')
-        update_window.config(background='#F7DCB9')
+        update_window.config(background='#E8DFCA')
 
-        table_label = ttk.Label(update_window, text="Select Table:", background="#F7DCB9", font=("Arial", 12, "bold"))
+        table_label = ttk.Label(update_window, text="Select Table:", background="#E8DFCA", font=("Arial", 14, "bold"))
         table_label.grid(row=0, column=0)
         table_var = tk.StringVar()
         table_var.set("Employee")
@@ -220,6 +229,7 @@ class EmployeeManagementApp:
         # Function to show specific fields based on selected table
         room_option_menus = []
         state_option_menus = []
+
         def show_fields():
             for option_menu in room_option_menus:
                 option_menu.grid_forget()
@@ -255,12 +265,13 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(update_window, text=field, bg="#F7DCB9", highlightbackground="#F7DCB9", highlightcolor="#F7DCB9").grid(row=i + 1, column=0)
+                tk.Label(update_window, text=field, bg="#E8DFCA", highlightbackground="#E8DFCA",
+                         highlightcolor="#E8DFCA", font=("Arial", 12)).grid(row=i + 1, column=0)
                 if selected_table == "Tables" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
                     state_combobox = ttk.Combobox(update_window, textvariable=state_var,
-                                                  values=["Available", "Not available"], width=15)
+                                                  values=["Available", "Not available"], width=20)
                     state_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(state_combobox)
@@ -275,7 +286,7 @@ class EmployeeManagementApp:
                     room_var = tk.StringVar()
                     rooms = show_rooms.show_rooms()
                     room_list = [f"ID: {room[0]}   Class: {room[1]}   Price: {room[2]}" for room in rooms]
-                    room_combobox = ttk.Combobox(update_window, textvariable=room_var, values=room_list, width=15)
+                    room_combobox = ttk.Combobox(update_window, textvariable=room_var, values=room_list, width=20)
                     room_combobox.grid(row=i + 1, column=1)
 
                     room_option_menus.append(room_combobox)
@@ -288,7 +299,7 @@ class EmployeeManagementApp:
                     # Add the dropdown menu for "Rate" field
                     rate_var = tk.StringVar()
                     rate_combobox = ttk.Combobox(update_window, textvariable=rate_var, values=list(range(11)),
-                                                 width=15)  # Values from 0 to 10
+                                                 width=20)  # Values from 0 to 10
                     rate_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(rate_combobox)
@@ -302,7 +313,7 @@ class EmployeeManagementApp:
                     meal_var = tk.StringVar()
                     meals = show_menu.show_menu()
                     menu_list = [f"ID: {meal[0]}  {meal[1]}  {meal[2]}$" for meal in meals]
-                    meal_combobox = ttk.Combobox(update_window, textvariable=meal_var, values=menu_list, width=15)
+                    meal_combobox = ttk.Combobox(update_window, textvariable=meal_var, values=menu_list, width=20)
                     meal_combobox.grid(row=i + 1, column=1)
 
                     state_option_menus.append(meal_combobox)
@@ -315,6 +326,10 @@ class EmployeeManagementApp:
                     entry = tk.Entry(update_window)
                     entry.grid(row=i + 1, column=1)
                     self.input_entries.append(entry)
+
+            # Adjust window size based on the number of fields
+            update_window.update_idletasks()  # Update the window to calculate its size
+            update_window.geometry("{}x{}".format(update_window.winfo_reqwidth(), update_window.winfo_reqheight()))
 
         # Button to show fields based on selected table
         show_fields_button = ttk.Button(update_window, text="Show Fields", command=show_fields, style="TButton")
