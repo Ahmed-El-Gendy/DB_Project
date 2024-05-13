@@ -1,59 +1,92 @@
 import tkinter as tk
-from tkinter import messagebox
-from PIL import Image, ImageTk, ImageDraw
 
-class RoundedWindow(tk.Toplevel):
-    def __init__(self, master=None, **kwargs):
-        super().__init__(master, **kwargs)
-        self.overrideredirect(True)  # Remove window decorations
-        self.create_rounded_window()
+class DatabaseGUI:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Database Insertion")
 
-    def create_rounded_window(self):
-        width, height = 683, 384
-        self.geometry(f"{width}x{height}+{self.winfo_screenwidth() // 2 - width // 2}+{self.winfo_screenheight() // 2 - height // 2}")
-        self.canvas = tk.Canvas(self, width=width, height=height, highlightthickness=0)
-        self.canvas.pack()
-        # Draw rounded rectangle mask
-        mask = Image.new("L", (width, height), 0)
-        draw = ImageDraw.Draw(mask)
-        draw.rectangle([(0, 0), (width, height)], fill=255)
-        draw.rectangle([(10, 10), (width - 10, height - 10)], fill=0)
-        draw.rectangle([(20, 20), (width - 20, height - 20)], fill=255)
-        self.mask = mask
+        # Guest ID Entry
+        self.guest_id_label = tk.Label(root, text="Guest ID:")
+        self.guest_id_label.grid(row=0, column=0)
+        self.guest_id_entry = tk.Entry(root)
+        self.guest_id_entry.grid(row=0, column=1)
 
-    def show(self):
-        self.wm_attributes("-transparentcolor", "white")
-        self.attributes("-alpha", 0.9)  # Set transparency level
-        self.update_idletasks()
-        self.mask_image = ImageTk.PhotoImage(image=self.mask)
-        self.canvas.create_image(0, 0, anchor="nw", image=self.mask_image)
+        # Phone Number Entry
+        self.phone_number_label = tk.Label(root, text="Phone Number:")
+        self.phone_number_label.grid(row=1, column=0)
+        self.phone_number_entry = tk.Entry(root)
+        self.phone_number_entry.grid(row=1, column=1)
 
-        # Your UI elements here
-        tk.Label(self, text="Welcome to [Hotel System]", font=("Arial", 20, "bold")).place(x=180, y=50)
-        tk.Label(self, text="Would you like to INSERT or UPDATE data?", font=("Arial", 20, "bold")).place(x=70, y=160)
+        # Insert Guest Number Button
+        self.insert_guest_num_button = tk.Button(root, text="Insert Guest Number", command=self.insert_guest_num)
+        self.insert_guest_num_button.grid(row=2, column=0, columnspan=2)
 
-        insert_button = tk.Button(self, text="Insert", command=self.insert_data, bg="#DEAC80", fg="#000000")
-        insert_button.place(x=100, y=250)
-        insert_button.config(width=10, height=4)
+        # Meal ID Entry
+        self.meal_id_label = tk.Label(root, text="Meal ID:")
+        self.meal_id_label.grid(row=3, column=0)
+        self.meal_id_entry = tk.Entry(root)
+        self.meal_id_entry.grid(row=3, column=1)
 
-        update_button = tk.Button(self, text="Update", command=self.update_data, bg="#DEAC80", fg="#000000")
-        update_button.place(x=500, y=250)
-        update_button.config(width=10, height=4)
+        # Number of Order Entry
+        self.num_order_label = tk.Label(root, text="Number of Order:")
+        self.num_order_label.grid(row=4, column=0)
+        self.num_order_entry = tk.Entry(root)
+        self.num_order_entry.grid(row=4, column=1)
 
-        self.mainloop()
+        # Insert Guest Order Button
+        self.insert_guest_order_button = tk.Button(root, text="Insert Guest Order", command=self.insert_guest_order)
+        self.insert_guest_order_button.grid(row=5, column=0, columnspan=2)
 
-    def insert_data(self):
-        insert_window = tk.Toplevel(self)
-        insert_window.title("Insert Data")
-        insert_window.config(background='#F7DCB9')
-        # Your insert window code here
+        # Menu ID Entry
+        self.menu_id_label = tk.Label(root, text="Menu ID:")
+        self.menu_id_label.grid(row=6, column=0)
+        self.menu_id_entry = tk.Entry(root)
+        self.menu_id_entry.grid(row=6, column=1)
 
-    def update_data(self):
-        update_window = tk.Toplevel(self)
-        update_window.title("Update Data")
-        update_window.config(background='#F7DCB9')
-        # Your update window code here
+        # Price Entry
+        self.price_label = tk.Label(root, text="Price:")
+        self.price_label.grid(row=7, column=0)
+        self.price_entry = tk.Entry(root)
+        self.price_entry.grid(row=7, column=1)
+
+        # Name Entry
+        self.name_label = tk.Label(root, text="Name:")
+        self.name_label.grid(row=8, column=0)
+        self.name_entry = tk.Entry(root)
+        self.name_entry.grid(row=8, column=1)
+
+        # Insert Menu Button
+        self.insert_menu_button = tk.Button(root, text="Insert Menu", command=self.insert_menu)
+        self.insert_menu_button.grid(row=9, column=0, columnspan=2)
+
+        # Class Entry
+        self.class_label = tk.Label(root, text="Class:")
+        self.class_label.grid(row=10, column=0)
+        self.class_entry = tk.Entry(root)
+        self.class_entry.grid(row=10, column=1)
+
+        # State Entry
+        self.state_label = tk.Label(root, text="State:")
+        self.state_label.grid(row=11, column=0)
+        self.state_entry = tk.Entry(root)
+        self.state_entry.grid(row=11, column=1)
+
+        # Insert Room Button
+        self.insert_room_button = tk.Button(root, text="Insert Room", command=self.insert_room)
+        self.insert_room_button.grid(row=12, column=0, columnspan=2)
+
+    def insert_guest_num(self):
+        pass
+
+    def insert_guest_order(self):
+        pass
+
+    def insert_menu(self):
+        pass
+
+    def insert_room(self):
+        pass
 
 root = tk.Tk()
-app = RoundedWindow(root)
-app.show()
+app = DatabaseGUI(root)
+root.mainloop()

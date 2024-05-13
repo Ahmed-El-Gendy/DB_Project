@@ -1,10 +1,10 @@
 import pymysql
 
-
 def delete_orders(guest_id):
-    connection = pymysql.connect(host='localhost',user='root',
-                                password='Ramy@123',
-                                database='hotel')
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='Ramy@123',
+                                 database='hotel')
 
     try:
         cursor = connection.cursor()
