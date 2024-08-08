@@ -58,9 +58,9 @@ class EmployeeManagementApp:
         insert_window = tk.Toplevel(self.master)
         insert_window.title("Insert Data")
         insert_window.iconbitmap('hotel.ico')
-        insert_window.config(background='#FFE0B5')
+        insert_window.config(background='#E8DFCA')
 
-        table_label = ttk.Label(insert_window, text="Select Table:", background="#FFE0B5", font=("Arial", 14, "bold"))
+        table_label = ttk.Label(insert_window, text="Select Table:", background="#E8DFCA", font=("Arial", 14, "bold"))
         table_label.grid(row=0, column=0)
         table_var = tk.StringVar()
         table_var.set("Employee")
@@ -106,8 +106,8 @@ class EmployeeManagementApp:
             # Create input fields
             self.input_entries = []
             for i, field in enumerate(fields):
-                tk.Label(insert_window, text=field, bg="#FFE0B5", highlightbackground="#FFE0B5",
-                         highlightcolor="#FFE0B5", font=("Arial", 12)).grid(row=i + 1, column=0)
+                tk.Label(insert_window, text=field, bg="#E8DFCA", highlightbackground="#E8DFCA",
+                         highlightcolor="#E8DFCA", font=("Arial", 12)).grid(row=i + 1, column=0)
                 if selected_table == "Tables" and field == "State:":
                     # Add the dropdown menu for "State" field
                     state_var = tk.StringVar()
@@ -412,7 +412,7 @@ class EmployeeManagementApp:
             price_per_night = 150
         else:
             price_per_night = 100
-        room.insert_room(state, price_per_night, clas)
+        room.insert_room(clas, price_per_night, state)
         print(state)
 
     def insert_tables(self, table_num, chairs_num, state):

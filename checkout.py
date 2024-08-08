@@ -33,7 +33,7 @@ def print_list_of_strings(strings):
 
 
     # Configure the text widget background
-    text_widget.config(background='#F7DCB9')
+    text_widget.config(background='#E8DFCA')
 
     # Start the main event loop
     window.mainloop()

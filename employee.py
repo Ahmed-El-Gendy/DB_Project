@@ -1,6 +1,6 @@
 import pymysql
 
-def insert_employee(id, age, nationality, jop, salary, manger_id, name):
+def insert_employee(id, age, nationality, job, salary, manger_id, name):
     connection = pymysql.connect(
         host='localhost',
         user='root',
@@ -10,8 +10,8 @@ def insert_employee(id, age, nationality, jop, salary, manger_id, name):
 
     try:
         cursor = connection.cursor()
-        sql = "INSERT INTO employee (id, age, nationality, jop, salary, manger_id, name) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        data = (id, age, nationality, jop, salary, manger_id, name)
+        sql = "INSERT INTO employee (id, age, nationality, job, salary, manager_id, name) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        data = (id, age, nationality, job, salary, manger_id, name)
         cursor.execute(sql, data)
         connection.commit()
     except pymysql.Error as e:

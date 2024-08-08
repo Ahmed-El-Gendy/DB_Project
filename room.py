@@ -17,4 +17,4 @@ def insert_room(clas, price_per_night, state):
         cursor.close()
         connection.close()
 if __name__ == "__main__":
-    insert_room('Not occupied', 'A', 200)
+    insert_room('Not occupied', 'B', 150)
