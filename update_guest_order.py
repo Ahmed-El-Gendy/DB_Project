@@ -4,7 +4,7 @@ def update_guest_order(guest_id, meal_id, number_of_order):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 

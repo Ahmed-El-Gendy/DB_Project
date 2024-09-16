@@ -5,7 +5,7 @@ def update_tables(table_num, guest_id, start, receptionist_id, state):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
     table_num = int(table_num)

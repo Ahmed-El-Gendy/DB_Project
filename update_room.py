@@ -5,7 +5,7 @@ def update_room1(id, state, guest_id = None, receptionist_id = None, interval_du
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
     try:

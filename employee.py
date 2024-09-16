@@ -4,7 +4,7 @@ def insert_employee(id, age, nationality, job, salary, manger_id, name):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 

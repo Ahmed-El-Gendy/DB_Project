@@ -4,7 +4,7 @@ def update_feedback(id, opinion, rate, guest_id):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 

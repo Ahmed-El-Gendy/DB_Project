@@ -4,7 +4,7 @@ def update_employee(id, age, nationality, jop, salary, manger_id, name):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 

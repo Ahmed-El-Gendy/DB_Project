@@ -4,7 +4,7 @@ def show_menu():
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
     try:

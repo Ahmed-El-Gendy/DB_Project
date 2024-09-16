@@ -4,7 +4,7 @@ def insert_room(clas, price_per_night, state):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
     try:

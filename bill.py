@@ -5,7 +5,7 @@ def insert_bill(guest_id, receptionist_id):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 

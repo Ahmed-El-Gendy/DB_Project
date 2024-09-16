@@ -4,7 +4,7 @@ def update_guest_num(guest_id, old_phone_number, new_phone_number):
     connection = pymysql.connect(
         host='localhost',
         user='root',
-        password='Ramy@123',
+        password='***',
         database='hotel',
     )
 
